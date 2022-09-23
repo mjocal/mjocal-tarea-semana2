@@ -19,7 +19,7 @@ export default class ToDoClasses extends Component {
   render() {
     return (
       <div>
-        <p>TO-DO List using Classes</p>
+        <h3>TO-DO List using Classes</h3>
         <ul>
           {this.state.list.slice(5, 10).map((item) => (
             <li key={item.id}>

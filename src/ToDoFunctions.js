@@ -17,7 +17,7 @@ export const ToDoFunctions = () => {
 
   return (
     <div>
-      <p>TO-DO List using Functions</p>
+      <h3>TO-DO List using Functions</h3>
       <ul>
         {list.slice(0, 5).map((item) => (
           <li key={item.id}>
