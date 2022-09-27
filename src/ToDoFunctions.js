@@ -2,27 +2,44 @@ import React from "react";
 
 export const ToDoFunctions = () => {
   const [list, setList] = React.useState([]);
+  const [users, setUsers] = React.useState([]);
+
+  const getUserById = (userId) => {
+    let username = users.find((item) => item.id === userId);
+    username = username.name;
+    return username;
+  };
 
   async function getTodos() {
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-    const data = await response.json();
-    setList(data);
+    fetch("https://jsonplaceholder.typicode.com/todos")
+      .then((response) => response.json())
+      .then((result) => {
+        setList(result);
+      });
+  }
+
+  async function getUsers() {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((result) => {
+        setUsers(result);
+      });
   }
 
   React.useEffect(() => {
-    setTimeout(() => {
-      getTodos();
-    }, 1000);
+    getTodos();
+    getUsers();
   }, []);
 
   return (
     <div>
       <h3>TO-DO List using Functions</h3>
       <ul>
-        {list.slice(0, 5).map((item) => (
+        {list.slice(17, 22).map((item) => (
           <li key={item.id}>
-            <p>id: {item.id}</p>
-            <p>titulo: {item.title}</p>
+            <p>username: {getUserById(item.userId)}</p>
+            <p>task id: {item.id}</p>
+            <p>title: {item.title}</p>
           </li>
         ))}
       </ul>
